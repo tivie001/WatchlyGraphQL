@@ -6,7 +6,7 @@
 	import ApolloClient from "apollo-boost";
 	import { setClient } from "svelte-apollo";
 	import MyWatchList from "./Components/MyWatchlist.svelte";
-	import GraphQL from "./GraphQL.svelte";
+	import GraphQL from "./Components/GraphQL.svelte";
 	export let url = "";
 
 	const client = new ApolloClient({
@@ -67,6 +67,7 @@
 		padding: 0 20px 0 10px;
 	}
 </style>
+
 <Router {url}>
 	<div class="app-container">
 		<section class="app-nav">
@@ -106,6 +107,6 @@
 			</div>
 		</Route>
 		<Route path="watchlist" component={MyWatchList} />
-		<Route path="graphql" component={GraphQl} />
+		<Route path="graphql" component={GraphQL} />
 	</div>
 </Router>
