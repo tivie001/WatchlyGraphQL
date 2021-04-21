@@ -1,105 +1,121 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# GraphQL Server Example
 
----
+Created By: Tyler Ivie
 
-# svelte app
+## Prisma as your data modeling tool
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+- [Prisma Schema](https://github.com/tivie001/DGM4790-graphql-example/blob/main/prisma/schema.prisma)
+- [Schema.js](https://github.com/tivie001/DGM4790-graphql-example/blob/main/prisma/seed.js)
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+## Docker-based PostgreSQL or MySQL as your data store
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+- I used PostgresQL
+
+## At least 3 Query resolvers allowing users to get data from your server
+
+### 1. Get all popular movies
+
+```graphql
+query {
+  allMovies {
+    id
+    title
+    description
+    releaseDate
+    image
+  }
+}
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+### 2. Get all popular TV Shows
 
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
+```graphql
+query {
+  tvShow {
+    id
+    title
+    description
+    releaseDate
+    image
+    voteAverage
+  }
+}
 ```
 
-...then start [Rollup](https://rollupjs.org):
+### 3. Get all TV Shows & Movies on Watchlist
 
-```bash
-npm run dev
+Install npm dependencies:
+
+```graphql
+query {
+  watchList {
+    id
+    title
+    description
+    releaseDate
+    image
+    watched
+  }
+}
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+## At least 2 Mutation resolvers allowing users to create, update, or upsert an item.
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+### 1. Add a movie/TV show to watchlist
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
+```graphql
+mutation addMovieToWatchlist {
+  addMovieToWatchlist(
+    data: {
+      id: 1
+      title: "Inception"
+      description: "This is a description for the movie Inception"
+      releaseDate: "2010-03-24T00:00:00.000Z"
+      watched: false
+    }
+  ) {
+    id
+    title
+    description
+    releaseDate
+    watched
+  }
+}
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+### 2. Update a movie/TV show on watchlist to "Watched"
 
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
+```graphql
+mutation updateWatchListMovie {
+  updateWatchListMovie(
+    id: 7
+    data: { id: 1, title: "Inception", watched: false }
+  ) {
+    id
+    watched
+  }
+}
 ```
 
-## Using TypeScript
+## At least 1 Mutation resolver allowing users to delete an item.
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+### 2. Delete a movie/TV show from watchlist
 
-```bash
-node scripts/setupTypeScript.js
+```graphql
+mutation deleteMovieWatchlist {
+  deleteMovieWatchlist(id: 7) {
+    title
+    id
+  }
+}
 ```
 
-Or remove the script via:
+## Your datastore will contain at least 25 items
 
-```bash
-rm scripts/setupTypeScript.js
-```
+- Movies database has 10 items
+- Watchlist database has 5 items
+- TV Show database has 10 items
 
-## Deploying to the web
+## Your app will be deployable locally using Docker and will have seed data entered into the datastore.
 
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+- App running in a docker container and deployed to Heroku
