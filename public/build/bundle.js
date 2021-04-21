@@ -22120,20 +22120,227 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
-    // (105:6) {:else}
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[9] = list[i];
+    	return child_ctx;
+    }
+
+    // (129:6) {:else}
+    function create_else_block_2(ctx) {
+    	let each_1_anchor;
+    	let each_value_2 = /*$movies*/ ctx[0].data["allMovies"];
+    	validate_each_argument(each_value_2);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty$1();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$movies*/ 1) {
+    				each_value_2 = /*$movies*/ ctx[0].data["allMovies"];
+    				validate_each_argument(each_value_2);
+    				let i;
+
+    				for (i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_2.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block_2.name,
+    		type: "else",
+    		source: "(129:6) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (126:30) 
+    function create_if_block_5(ctx) {
+    	let t0;
+    	let t1_value = /*$movies*/ ctx[0].error.message + "";
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text("Error:\n        ");
+    			t1 = text(t1_value);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$movies*/ 1 && t1_value !== (t1_value = /*$movies*/ ctx[0].error.message + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_5.name,
+    		type: "if",
+    		source: "(126:30) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (124:6) {#if $movies.loading}
+    function create_if_block_4(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Loading...");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_4.name,
+    		type: "if",
+    		source: "(124:6) {#if $movies.loading}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (130:8) {#each $movies.data['allMovies'] as movie}
+    function create_each_block_2(ctx) {
+    	let div1;
+    	let div0;
+    	let img;
+    	let img_src_value;
+    	let img_alt_value;
+    	let t0;
+    	let small;
+    	let t1_value = /*movie*/ ctx[9].title + "";
+    	let t1;
+    	let t2;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			img = element("img");
+    			t0 = space();
+    			small = element("small");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			attr_dev(img, "class", "fav svelte-o23ju6");
+    			if (img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[9].image)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "height", "200");
+    			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[9].title);
+    			add_location(img, file$1, 132, 14, 2734);
+    			attr_dev(div0, "class", "img-container");
+    			add_location(div0, file$1, 131, 12, 2692);
+    			attr_dev(small, "class", "svelte-o23ju6");
+    			add_location(small, file$1, 138, 12, 2931);
+    			attr_dev(div1, "class", "movie-item svelte-o23ju6");
+    			add_location(div1, file$1, 130, 10, 2655);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, img);
+    			append_dev(div1, t0);
+    			append_dev(div1, small);
+    			append_dev(small, t1);
+    			append_dev(div1, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$movies*/ 1 && img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[9].image)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*$movies*/ 1 && img_alt_value !== (img_alt_value = /*movie*/ ctx[9].title)) {
+    				attr_dev(img, "alt", img_alt_value);
+    			}
+
+    			if (dirty & /*$movies*/ 1 && t1_value !== (t1_value = /*movie*/ ctx[9].title + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_2.name,
+    		type: "each",
+    		source: "(130:8) {#each $movies.data['allMovies'] as movie}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (153:6) {:else}
     function create_else_block_1(ctx) {
     	let each_1_anchor;
-    	let each_value_1 = /*$movies*/ ctx[0].data["allMovies"];
+    	let each_value_1 = /*$shows*/ ctx[1].data["tvShow"];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -22157,8 +22364,8 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$movies*/ 1) {
-    				each_value_1 = /*$movies*/ ctx[0].data["allMovies"];
+    			if (dirty & /*$shows*/ 2) {
+    				each_value_1 = /*$shows*/ ctx[1].data["tvShow"];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -22191,17 +22398,17 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(105:6) {:else}",
+    		source: "(153:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (102:30) 
+    // (150:29) 
     function create_if_block_3(ctx) {
     	let t0;
-    	let t1_value = /*$movies*/ ctx[0].error.message + "";
+    	let t1_value = /*$shows*/ ctx[1].error.message + "";
     	let t1;
 
     	const block = {
@@ -22214,7 +22421,7 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$movies*/ 1 && t1_value !== (t1_value = /*$movies*/ ctx[0].error.message + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*$shows*/ 2 && t1_value !== (t1_value = /*$shows*/ ctx[1].error.message + "")) set_data_dev(t1, t1_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(t0);
@@ -22226,14 +22433,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(102:30) ",
+    		source: "(150:29) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (100:6) {#if $movies.loading}
+    // (148:6) {#if $shows.loading}
     function create_if_block_2(ctx) {
     	let t;
 
@@ -22254,14 +22461,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(100:6) {#if $movies.loading}",
+    		source: "(148:6) {#if $shows.loading}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (106:8) {#each $movies.data['allMovies'] as movie}
+    // (154:8) {#each $shows.data['tvShow'] as show}
     function create_each_block_1(ctx) {
     	let div1;
     	let div0;
@@ -22270,7 +22477,7 @@ var app = (function () {
     	let img_alt_value;
     	let t0;
     	let small;
-    	let t1_value = /*movie*/ ctx[6].title + "";
+    	let t1_value = /*show*/ ctx[12].title + "";
     	let t1;
     	let t2;
 
@@ -22283,17 +22490,17 @@ var app = (function () {
     			small = element("small");
     			t1 = text(t1_value);
     			t2 = space();
-    			attr_dev(img, "class", "fav svelte-1ry35d1");
-    			if (img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[6].image)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "class", "fav svelte-o23ju6");
+    			if (img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*show*/ ctx[12].image)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "height", "200");
-    			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[6].title);
-    			add_location(img, file$1, 108, 14, 2261);
+    			attr_dev(img, "alt", img_alt_value = /*show*/ ctx[12].title);
+    			add_location(img, file$1, 156, 14, 3416);
     			attr_dev(div0, "class", "img-container");
-    			add_location(div0, file$1, 107, 12, 2219);
-    			attr_dev(small, "class", "svelte-1ry35d1");
-    			add_location(small, file$1, 114, 12, 2458);
-    			attr_dev(div1, "class", "movie-item svelte-1ry35d1");
-    			add_location(div1, file$1, 106, 10, 2182);
+    			add_location(div0, file$1, 155, 12, 3374);
+    			attr_dev(small, "class", "svelte-o23ju6");
+    			add_location(small, file$1, 162, 12, 3611);
+    			attr_dev(div1, "class", "movie-item svelte-o23ju6");
+    			add_location(div1, file$1, 154, 10, 3337);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -22305,15 +22512,15 @@ var app = (function () {
     			append_dev(div1, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$movies*/ 1 && img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[6].image)) {
+    			if (dirty & /*$shows*/ 2 && img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*show*/ ctx[12].image)) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*$movies*/ 1 && img_alt_value !== (img_alt_value = /*movie*/ ctx[6].title)) {
+    			if (dirty & /*$shows*/ 2 && img_alt_value !== (img_alt_value = /*show*/ ctx[12].title)) {
     				attr_dev(img, "alt", img_alt_value);
     			}
 
-    			if (dirty & /*$movies*/ 1 && t1_value !== (t1_value = /*movie*/ ctx[6].title + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*$shows*/ 2 && t1_value !== (t1_value = /*show*/ ctx[12].title + "")) set_data_dev(t1, t1_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
@@ -22324,17 +22531,17 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(106:8) {#each $movies.data['allMovies'] as movie}",
+    		source: "(154:8) {#each $shows.data['tvShow'] as show}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:6) {:else}
+    // (177:6) {:else}
     function create_else_block(ctx) {
     	let each_1_anchor;
-    	let each_value = /*$watchlist*/ ctx[1].data["watchList"];
+    	let each_value = /*$watchlist*/ ctx[2].data["watchList"];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -22358,8 +22565,8 @@ var app = (function () {
     			insert_dev(target, each_1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$watchlist*/ 2) {
-    				each_value = /*$watchlist*/ ctx[1].data["watchList"];
+    			if (dirty & /*$watchlist*/ 4) {
+    				each_value = /*$watchlist*/ ctx[2].data["watchList"];
     				validate_each_argument(each_value);
     				let i;
 
@@ -22392,14 +22599,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(132:6) {:else}",
+    		source: "(177:6) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:33) 
+    // (174:33) 
     function create_if_block_1(ctx) {
     	let t0;
     	let t1_value = /*$movies*/ ctx[0].error.message + "";
@@ -22427,14 +22634,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(129:33) ",
+    		source: "(174:33) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (127:6) {#if $watchlist.loading}
+    // (172:6) {#if $watchlist.loading}
     function create_if_block(ctx) {
     	let t;
 
@@ -22455,14 +22662,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(127:6) {#if $watchlist.loading}",
+    		source: "(172:6) {#if $watchlist.loading}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (133:8) {#each $watchlist.data['watchList'] as movie}
+    // (178:8) {#each $watchlist.data['watchList'] as movie}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
@@ -22471,7 +22678,7 @@ var app = (function () {
     	let img_alt_value;
     	let t0;
     	let small;
-    	let t1_value = /*movie*/ ctx[6].title + "";
+    	let t1_value = /*movie*/ ctx[9].title + "";
     	let t1;
     	let t2;
 
@@ -22484,17 +22691,17 @@ var app = (function () {
     			small = element("small");
     			t1 = text(t1_value);
     			t2 = space();
-    			attr_dev(img, "class", "fav svelte-1ry35d1");
-    			if (img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[6].image)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "class", "fav svelte-o23ju6");
+    			if (img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[9].image)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "height", "200");
-    			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[6].title);
-    			add_location(img, file$1, 135, 14, 3050);
+    			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[9].title);
+    			add_location(img, file$1, 180, 14, 4106);
     			attr_dev(div0, "class", "img-container");
-    			add_location(div0, file$1, 134, 12, 3008);
-    			attr_dev(small, "class", "svelte-1ry35d1");
-    			add_location(small, file$1, 141, 12, 3247);
-    			attr_dev(div1, "class", "movie-item svelte-1ry35d1");
-    			add_location(div1, file$1, 133, 10, 2971);
+    			add_location(div0, file$1, 179, 12, 4064);
+    			attr_dev(small, "class", "svelte-o23ju6");
+    			add_location(small, file$1, 186, 12, 4303);
+    			attr_dev(div1, "class", "movie-item svelte-o23ju6");
+    			add_location(div1, file$1, 178, 10, 4027);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -22506,15 +22713,15 @@ var app = (function () {
     			append_dev(div1, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$watchlist*/ 2 && img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[6].image)) {
+    			if (dirty & /*$watchlist*/ 4 && img.src !== (img_src_value = "https://image.tmdb.org/t/p/w500" + /*movie*/ ctx[9].image)) {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*$watchlist*/ 2 && img_alt_value !== (img_alt_value = /*movie*/ ctx[6].title)) {
+    			if (dirty & /*$watchlist*/ 4 && img_alt_value !== (img_alt_value = /*movie*/ ctx[9].title)) {
     				attr_dev(img, "alt", img_alt_value);
     			}
 
-    			if (dirty & /*$watchlist*/ 2 && t1_value !== (t1_value = /*movie*/ ctx[6].title + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*$watchlist*/ 4 && t1_value !== (t1_value = /*movie*/ ctx[9].title + "")) set_data_dev(t1, t1_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
@@ -22525,7 +22732,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(133:8) {#each $watchlist.data['watchList'] as movie}",
+    		source: "(178:8) {#each $watchlist.data['watchList'] as movie}",
     		ctx
     	});
 
@@ -22533,7 +22740,7 @@ var app = (function () {
     }
 
     function create_fragment$1(ctx) {
-    	let div2;
+    	let div3;
     	let section0;
     	let h10;
     	let t1;
@@ -22542,32 +22749,43 @@ var app = (function () {
     	let section1;
     	let h11;
     	let t4;
+    	let div1;
+    	let t5;
     	let section2;
     	let h12;
-    	let t6;
-    	let div1;
+    	let t7;
+    	let div2;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*$movies*/ ctx[0].loading) return create_if_block_2;
-    		if (/*$movies*/ ctx[0].error) return create_if_block_3;
-    		return create_else_block_1;
+    		if (/*$movies*/ ctx[0].loading) return create_if_block_4;
+    		if (/*$movies*/ ctx[0].error) return create_if_block_5;
+    		return create_else_block_2;
     	}
 
     	let current_block_type = select_block_type(ctx);
     	let if_block0 = current_block_type(ctx);
 
     	function select_block_type_1(ctx, dirty) {
-    		if (/*$watchlist*/ ctx[1].loading) return create_if_block;
-    		if (/*$watchlist*/ ctx[1].error) return create_if_block_1;
-    		return create_else_block;
+    		if (/*$shows*/ ctx[1].loading) return create_if_block_2;
+    		if (/*$shows*/ ctx[1].error) return create_if_block_3;
+    		return create_else_block_1;
     	}
 
     	let current_block_type_1 = select_block_type_1(ctx);
     	let if_block1 = current_block_type_1(ctx);
 
+    	function select_block_type_2(ctx, dirty) {
+    		if (/*$watchlist*/ ctx[2].loading) return create_if_block;
+    		if (/*$watchlist*/ ctx[2].error) return create_if_block_1;
+    		return create_else_block;
+    	}
+
+    	let current_block_type_2 = select_block_type_2(ctx);
+    	let if_block2 = current_block_type_2(ctx);
+
     	const block = {
     		c: function create() {
-    			div2 = element("div");
+    			div3 = element("div");
     			section0 = element("section");
     			h10 = element("h1");
     			h10.textContent = "My Favorites Movies";
@@ -22579,50 +22797,58 @@ var app = (function () {
     			h11 = element("h1");
     			h11.textContent = "My Favorite TV Shows";
     			t4 = space();
+    			div1 = element("div");
+    			if_block1.c();
+    			t5 = space();
     			section2 = element("section");
     			h12 = element("h1");
     			h12.textContent = "Watchlist";
-    			t6 = space();
-    			div1 = element("div");
-    			if_block1.c();
-    			attr_dev(h10, "class", "svelte-1ry35d1");
-    			add_location(h10, file$1, 97, 4, 1924);
-    			attr_dev(div0, "class", "movie-grid svelte-1ry35d1");
-    			add_location(div0, file$1, 98, 4, 1957);
-    			attr_dev(section0, "class", "card-wrapper movie-container svelte-1ry35d1");
-    			add_location(section0, file$1, 96, 2, 1873);
-    			attr_dev(h11, "class", "svelte-1ry35d1");
-    			add_location(h11, file$1, 121, 4, 2613);
-    			attr_dev(section1, "class", "card-wrapper watchlist-container svelte-1ry35d1");
-    			add_location(section1, file$1, 120, 2, 2558);
-    			attr_dev(h12, "class", "svelte-1ry35d1");
-    			add_location(h12, file$1, 124, 4, 2714);
-    			attr_dev(div1, "class", "movie-grid svelte-1ry35d1");
-    			add_location(div1, file$1, 125, 4, 2737);
-    			attr_dev(section2, "class", "card-wrapper new-movies-container svelte-1ry35d1");
-    			add_location(section2, file$1, 123, 2, 2658);
-    			attr_dev(div2, "class", "graphql-container svelte-1ry35d1");
-    			add_location(div2, file$1, 95, 0, 1839);
+    			t7 = space();
+    			div2 = element("div");
+    			if_block2.c();
+    			attr_dev(h10, "class", "svelte-o23ju6");
+    			add_location(h10, file$1, 121, 4, 2397);
+    			attr_dev(div0, "class", "movie-grid svelte-o23ju6");
+    			add_location(div0, file$1, 122, 4, 2430);
+    			attr_dev(section0, "class", "card-wrapper movie-container svelte-o23ju6");
+    			add_location(section0, file$1, 120, 2, 2346);
+    			attr_dev(h11, "class", "svelte-o23ju6");
+    			add_location(h11, file$1, 145, 4, 3086);
+    			attr_dev(div1, "class", "movie-grid svelte-o23ju6");
+    			add_location(div1, file$1, 146, 4, 3120);
+    			attr_dev(section1, "class", "card-wrapper watchlist-container svelte-o23ju6");
+    			add_location(section1, file$1, 144, 2, 3031);
+    			attr_dev(h12, "class", "svelte-o23ju6");
+    			add_location(h12, file$1, 169, 4, 3766);
+    			attr_dev(div2, "class", "watchlist-grid svelte-o23ju6");
+    			add_location(div2, file$1, 170, 4, 3789);
+    			attr_dev(section2, "class", "card-wrapper new-movies-container svelte-o23ju6");
+    			add_location(section2, file$1, 168, 2, 3710);
+    			attr_dev(div3, "class", "graphql-container svelte-o23ju6");
+    			add_location(div3, file$1, 119, 0, 2312);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div2, anchor);
-    			append_dev(div2, section0);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, section0);
     			append_dev(section0, h10);
     			append_dev(section0, t1);
     			append_dev(section0, div0);
     			if_block0.m(div0, null);
-    			append_dev(div2, t2);
-    			append_dev(div2, section1);
+    			append_dev(div3, t2);
+    			append_dev(div3, section1);
     			append_dev(section1, h11);
-    			append_dev(div2, t4);
-    			append_dev(div2, section2);
-    			append_dev(section2, h12);
-    			append_dev(section2, t6);
-    			append_dev(section2, div1);
+    			append_dev(section1, t4);
+    			append_dev(section1, div1);
     			if_block1.m(div1, null);
+    			append_dev(div3, t5);
+    			append_dev(div3, section2);
+    			append_dev(section2, h12);
+    			append_dev(section2, t7);
+    			append_dev(section2, div2);
+    			if_block2.m(div2, null);
     		},
     		p: function update(ctx, [dirty]) {
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
@@ -22648,13 +22874,26 @@ var app = (function () {
     					if_block1.m(div1, null);
     				}
     			}
+
+    			if (current_block_type_2 === (current_block_type_2 = select_block_type_2(ctx)) && if_block2) {
+    				if_block2.p(ctx, dirty);
+    			} else {
+    				if_block2.d(1);
+    				if_block2 = current_block_type_2(ctx);
+
+    				if (if_block2) {
+    					if_block2.c();
+    					if_block2.m(div2, null);
+    				}
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(div3);
     			if_block0.d();
     			if_block1.d();
+    			if_block2.d();
     		}
     	};
 
@@ -22671,6 +22910,7 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let $movies;
+    	let $shows;
     	let $watchlist;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("GraphQL", slots, []);
@@ -22700,12 +22940,28 @@ var app = (function () {
     }
   `;
 
+    	const GET_SHOWS = gql$1`
+    query {
+      tvShow {
+        id
+        title
+        description
+        releaseDate
+        image
+        voteAverage
+      }
+    }
+  `;
+
     	const movies = query(GET_MOVIES);
     	validate_store(movies, "movies");
     	component_subscribe($$self, movies, value => $$invalidate(0, $movies = value));
     	const watchlist = query(GET_WATCHLIST);
     	validate_store(watchlist, "watchlist");
-    	component_subscribe($$self, watchlist, value => $$invalidate(1, $watchlist = value));
+    	component_subscribe($$self, watchlist, value => $$invalidate(2, $watchlist = value));
+    	const shows = query(GET_SHOWS);
+    	validate_store(shows, "shows");
+    	component_subscribe($$self, shows, value => $$invalidate(1, $shows = value));
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -22717,13 +22973,16 @@ var app = (function () {
     		gql: gql$1,
     		GET_MOVIES,
     		GET_WATCHLIST,
+    		GET_SHOWS,
     		movies,
     		watchlist,
+    		shows,
     		$movies,
+    		$shows,
     		$watchlist
     	});
 
-    	return [$movies, $watchlist, movies, watchlist];
+    	return [$movies, $shows, $watchlist, movies, watchlist, shows];
     }
 
     class GraphQL extends SvelteComponentDev {

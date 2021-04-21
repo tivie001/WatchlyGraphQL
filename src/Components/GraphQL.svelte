@@ -24,13 +24,29 @@
       }
     }
   `;
+  const GET_SHOWS = gql`
+    query {
+      tvShow {
+        id
+        title
+        description
+        releaseDate
+        image
+        voteAverage
+      }
+    }
+  `;
   const movies = query(GET_MOVIES);
   const watchlist = query(GET_WATCHLIST);
+  const shows = query(GET_SHOWS);
 </script>
 
 <style>
   h1 {
     color: white;
+    font-family: "Raleway";
+    text-transform: lowercase;
+    font-variant: small-caps;
   }
   .graphql-container {
     margin: 0 2rem;
@@ -55,7 +71,15 @@
   }
   .movie-grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    row-gap: 50px;
+    grid-auto-rows: minmax(100px, auto);
+    padding: 1rem;
+  }
+  .watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     row-gap: 50px;
     grid-auto-rows: minmax(100px, auto);
@@ -120,10 +144,31 @@
   </section>
   <section class="card-wrapper watchlist-container">
     <h1>My Favorite TV Shows</h1>
+    <div class="movie-grid">
+      {#if $shows.loading}
+        Loading...
+      {:else if $shows.error}
+        Error:
+        {$shows.error.message}
+      {:else}
+        {#each $shows.data['tvShow'] as show}
+          <div class="movie-item">
+            <div class="img-container">
+              <img
+                class="fav"
+                src="https://image.tmdb.org/t/p/w500{show.image}"
+                height="200"
+                alt={show.title} />
+            </div>
+            <small>{show.title}</small>
+          </div>
+        {/each}
+      {/if}
+    </div>
   </section>
   <section class="card-wrapper new-movies-container">
     <h1>Watchlist</h1>
-    <div class="movie-grid">
+    <div class="watchlist-grid">
       {#if $watchlist.loading}
         Loading...
       {:else if $watchlist.error}
