@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
+
+model Movie {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  image       String?
+  releaseDate DateTime?
+}
+
+model Watchlist {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  image       String?
+  releaseDate DateTime?
+  watched     Boolean?
+}
+
+model Tvshow {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  image       String?
+  releaseDate DateTime?
+  voteAverage String?
+}

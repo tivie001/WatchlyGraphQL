@@ -1,0 +1,28 @@
+query allInstructors {
+    allInstructors {
+      id
+      email
+      name
+    }
+    }
+    
+    query allCourses {
+      allCourses {
+        id
+        title
+        description
+        defaultCredits
+        courseCode
+      }
+    }
+    
+    query courseById {
+      courseById(id: 5) {
+        id
+        title
+        description
+        instructor {
+          name
+        }
+      }
+    }

@@ -1,0 +1,33 @@
+{
+  "name": "node-graphql",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^2.20.1",
+    "apollo-server": "2.21.2",
+    "graphql": "15.5.0",
+    "graphql-iso-date": "3.6.1",
+    "graphql-scalars": "^1.9.0",
+    "nexus": "1.0.0"
+  },
+  "scripts": {
+    "nuke": "docker stop graphql-docker && docker rm graphql-docker && docker volume rm -f pgdata && rm -rf prisma/migrations",
+    "launchDocker": "docker run --name graphql-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v pgdata:/var/lib/postgresql/data postgres:latest",
+    "migrate": "npx prisma migrate dev --name init",
+    "seed": "npx prisma db seed --preview-feature",
+    "seed:uvu": "node prisma/seed.js",
+    "dev": "nodemon src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.7",
+    "prisma": "^2.20.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
