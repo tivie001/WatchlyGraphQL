@@ -4,8 +4,8 @@ Created By: Tyler Ivie
 
 ## Prisma as your data modeling tool
 
-- [Prisma Schema](https://github.com/tivie001/DGM4790-graphql-example/blob/main/prisma/schema.prisma)
-- [Schema.js](https://github.com/tivie001/DGM4790-graphql-example/blob/main/prisma/seed.js)
+- [Prisma Schema](https://github.com/tivie001/WatchlyGraphQL/blob/master/graphql/prisma/schema.prisma)
+- [Schema.js](https://github.com/tivie001/WatchlyGraphQL/blob/master/graphql/prisma/seed.js)
 
 ## Docker-based PostgreSQL or MySQL as your data store
 

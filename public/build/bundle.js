@@ -21084,7 +21084,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (146:32) {:else}
+    // (252:32) {:else}
     function create_else_block_1$1(ctx) {
     	let div;
     	let fachecksquare;
@@ -21101,8 +21101,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(fachecksquare.$$.fragment);
-    			attr_dev(div, "class", "unchecked-icon check svelte-1oojrcx");
-    			add_location(div, file$2, 146, 36, 4360);
+    			attr_dev(div, "class", "unchecked-icon check svelte-awl7hh");
+    			add_location(div, file$2, 252, 36, 7214);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21138,14 +21138,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1$1.name,
     		type: "else",
-    		source: "(146:32) {:else}",
+    		source: "(252:32) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (142:32) {#if movie.watched}
+    // (246:32) {#if movie.watched}
     function create_if_block_1$1(ctx) {
     	let div;
     	let fachecksquare;
@@ -21162,8 +21162,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(fachecksquare.$$.fragment);
-    			attr_dev(div, "class", "checked-icon check svelte-1oojrcx");
-    			add_location(div, file$2, 142, 36, 4112);
+    			attr_dev(div, "class", "checked-icon check svelte-awl7hh");
+    			add_location(div, file$2, 246, 36, 6889);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21199,14 +21199,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(142:32) {#if movie.watched}",
+    		source: "(246:32) {#if movie.watched}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (130:8) {#each watchList as movie, i}
+    // (231:8) {#each watchList as movie, i}
     function create_each_block_1$1(ctx) {
     	let table;
     	let tbody;
@@ -21270,26 +21270,26 @@ var app = (function () {
     			if (img.src !== (img_src_value = /*movie*/ ctx[10].moviePoster)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "height", "100");
     			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[10].title);
-    			attr_dev(img, "class", "svelte-1oojrcx");
-    			add_location(img, file$2, 134, 28, 3718);
-    			attr_dev(td0, "class", "svelte-1oojrcx");
-    			add_location(td0, file$2, 133, 24, 3685);
-    			attr_dev(h4, "class", "svelte-1oojrcx");
-    			add_location(h4, file$2, 137, 28, 3869);
-    			attr_dev(td1, "class", "svelte-1oojrcx");
-    			add_location(td1, file$2, 136, 24, 3836);
-    			add_location(div0, file$2, 140, 28, 3979);
-    			attr_dev(td2, "class", "svelte-1oojrcx");
-    			add_location(td2, file$2, 139, 24, 3946);
-    			attr_dev(div1, "class", "trash-icon svelte-1oojrcx");
-    			add_location(div1, file$2, 154, 32, 4770);
-    			add_location(div2, file$2, 153, 28, 4690);
-    			attr_dev(td3, "class", "svelte-1oojrcx");
-    			add_location(td3, file$2, 152, 24, 4657);
-    			add_location(tr, file$2, 132, 20, 3652);
-    			add_location(tbody, file$2, 131, 16, 3624);
-    			attr_dev(table, "class", "list-movie-item svelte-1oojrcx");
-    			add_location(table, file$2, 130, 8, 3576);
+    			attr_dev(img, "class", "svelte-awl7hh");
+    			add_location(img, file$2, 235, 28, 6400);
+    			attr_dev(td0, "class", "svelte-awl7hh");
+    			add_location(td0, file$2, 234, 24, 6367);
+    			attr_dev(h4, "class", "svelte-awl7hh");
+    			add_location(h4, file$2, 241, 28, 6646);
+    			attr_dev(td1, "class", "svelte-awl7hh");
+    			add_location(td1, file$2, 240, 24, 6613);
+    			add_location(div0, file$2, 244, 28, 6756);
+    			attr_dev(td2, "class", "svelte-awl7hh");
+    			add_location(td2, file$2, 243, 24, 6723);
+    			attr_dev(div1, "class", "trash-icon svelte-awl7hh");
+    			add_location(div1, file$2, 262, 32, 7705);
+    			add_location(div2, file$2, 261, 28, 7625);
+    			attr_dev(td3, "class", "svelte-awl7hh");
+    			add_location(td3, file$2, 260, 24, 7592);
+    			add_location(tr, file$2, 233, 20, 6338);
+    			add_location(tbody, file$2, 232, 16, 6310);
+    			attr_dev(table, "class", "list-movie-item svelte-awl7hh");
+    			add_location(table, file$2, 231, 12, 6262);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, table, anchor);
@@ -21402,14 +21402,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(130:8) {#each watchList as movie, i}",
+    		source: "(231:8) {#each watchList as movie, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (183:32) {:else}
+    // (296:32) {:else}
     function create_else_block$1(ctx) {
     	let div;
     	let fachecksquare;
@@ -21426,8 +21426,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(fachecksquare.$$.fragment);
-    			attr_dev(div, "class", "unchecked-icon fav-check svelte-1oojrcx");
-    			add_location(div, file$2, 183, 36, 5966);
+    			attr_dev(div, "class", "unchecked-icon fav-check svelte-awl7hh");
+    			add_location(div, file$2, 296, 36, 9077);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21463,14 +21463,14 @@ var app = (function () {
     		block,
     		id: create_else_block$1.name,
     		type: "else",
-    		source: "(183:32) {:else}",
+    		source: "(296:32) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (179:32) {#if movie.watched}
+    // (290:32) {#if movie.watched}
     function create_if_block$1(ctx) {
     	let div;
     	let fachecksquare;
@@ -21487,8 +21487,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(fachecksquare.$$.fragment);
-    			attr_dev(div, "class", "checked-icon fav-check svelte-1oojrcx");
-    			add_location(div, file$2, 179, 36, 5714);
+    			attr_dev(div, "class", "checked-icon fav-check svelte-awl7hh");
+    			add_location(div, file$2, 290, 36, 8745);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -21524,14 +21524,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(179:32) {#if movie.watched}",
+    		source: "(290:32) {#if movie.watched}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (167:8) {#each favorites as movie, i}
+    // (275:8) {#each favorites as movie, i}
     function create_each_block$1(ctx) {
     	let table;
     	let tbody;
@@ -21595,26 +21595,26 @@ var app = (function () {
     			if (img.src !== (img_src_value = /*movie*/ ctx[10].moviePoster)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "height", "100");
     			attr_dev(img, "alt", img_alt_value = /*movie*/ ctx[10].title);
-    			attr_dev(img, "class", "svelte-1oojrcx");
-    			add_location(img, file$2, 171, 28, 5317);
-    			attr_dev(td0, "class", "svelte-1oojrcx");
-    			add_location(td0, file$2, 170, 24, 5284);
-    			attr_dev(h4, "class", "svelte-1oojrcx");
-    			add_location(h4, file$2, 174, 28, 5468);
-    			attr_dev(td1, "class", "svelte-1oojrcx");
-    			add_location(td1, file$2, 173, 24, 5435);
-    			add_location(div0, file$2, 177, 28, 5578);
-    			attr_dev(td2, "class", "svelte-1oojrcx");
-    			add_location(td2, file$2, 176, 24, 5545);
-    			attr_dev(div1, "class", "trash-icon svelte-1oojrcx");
-    			add_location(div1, file$2, 191, 32, 6382);
-    			add_location(div2, file$2, 190, 28, 6303);
-    			attr_dev(td3, "class", "svelte-1oojrcx");
-    			add_location(td3, file$2, 189, 24, 6270);
-    			add_location(tr, file$2, 169, 20, 5255);
-    			add_location(tbody, file$2, 168, 16, 5227);
-    			attr_dev(table, "class", "list-movie-item svelte-1oojrcx");
-    			add_location(table, file$2, 167, 12, 5179);
+    			attr_dev(img, "class", "svelte-awl7hh");
+    			add_location(img, file$2, 279, 28, 8253);
+    			attr_dev(td0, "class", "svelte-awl7hh");
+    			add_location(td0, file$2, 278, 24, 8220);
+    			attr_dev(h4, "class", "svelte-awl7hh");
+    			add_location(h4, file$2, 285, 28, 8499);
+    			attr_dev(td1, "class", "svelte-awl7hh");
+    			add_location(td1, file$2, 284, 24, 8466);
+    			add_location(div0, file$2, 288, 28, 8609);
+    			attr_dev(td2, "class", "svelte-awl7hh");
+    			add_location(td2, file$2, 287, 24, 8576);
+    			attr_dev(div1, "class", "trash-icon svelte-awl7hh");
+    			add_location(div1, file$2, 306, 32, 9574);
+    			add_location(div2, file$2, 305, 28, 9495);
+    			attr_dev(td3, "class", "svelte-awl7hh");
+    			add_location(td3, file$2, 304, 24, 9462);
+    			add_location(tr, file$2, 277, 20, 8191);
+    			add_location(tbody, file$2, 276, 16, 8163);
+    			attr_dev(table, "class", "list-movie-item svelte-awl7hh");
+    			add_location(table, file$2, 275, 12, 8115);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, table, anchor);
@@ -21727,7 +21727,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(167:8) {#each favorites as movie, i}",
+    		source: "(275:8) {#each favorites as movie, i}",
     		ctx
     	});
 
@@ -21790,16 +21790,16 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(h10, "class", "card-title svelte-1oojrcx");
-    			add_location(h10, file$2, 127, 8, 3431);
-    			attr_dev(div0, "class", "list-container svelte-1oojrcx");
-    			add_location(div0, file$2, 126, 4, 3394);
-    			attr_dev(h11, "class", "card-title svelte-1oojrcx");
-    			add_location(h11, file$2, 165, 8, 5088);
-    			attr_dev(div1, "class", "fav-container svelte-1oojrcx");
-    			add_location(div1, file$2, 164, 4, 5052);
-    			attr_dev(section, "class", "card-wrapper svelte-1oojrcx");
-    			add_location(section, file$2, 125, 0, 3359);
+    			attr_dev(h10, "class", "card-title svelte-awl7hh");
+    			add_location(h10, file$2, 228, 8, 6113);
+    			attr_dev(div0, "class", "list-container svelte-awl7hh");
+    			add_location(div0, file$2, 227, 4, 6076);
+    			attr_dev(h11, "class", "card-title svelte-awl7hh");
+    			add_location(h11, file$2, 273, 8, 8024);
+    			attr_dev(div1, "class", "fav-container svelte-awl7hh");
+    			add_location(div1, file$2, 272, 4, 7988);
+    			attr_dev(section, "class", "card-wrapper svelte-awl7hh");
+    			add_location(section, file$2, 226, 0, 6041);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

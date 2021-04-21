@@ -1,215 +1,138 @@
 <script>
-    import { onMount } from 'svelte'
-    import axios from 'axios'
-    import FaCheckSquare from 'svelte-icons/fa/FaCheckSquare.svelte'
-    import FaTrashAlt from 'svelte-icons/fa/FaTrashAlt.svelte'
+    import { onMount } from "svelte";
+    import axios from "axios";
+    import FaCheckSquare from "svelte-icons/fa/FaCheckSquare.svelte";
+    import FaTrashAlt from "svelte-icons/fa/FaTrashAlt.svelte";
 
-    let watchList = []
-    let favorites = []
+    let watchList = [];
+    let favorites = [];
 
     onMount(async () => {
         const options = {
-			method: "GET",
-			url: "https://watchly-app-backend.herokuapp.com/api/movies",
-		};
-		axios.request(options)
-		.then((res) => {
-            watchList = res.data.watchList
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-    })
+            method: "GET",
+            url: "https://watchly-app-backend.herokuapp.com/api/movies",
+        };
+        axios
+            .request(options)
+            .then((res) => {
+                watchList = res.data.watchList;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
     onMount(async () => {
         const options = {
-			method: "GET",
-			url: "https://watchly-app-backend.herokuapp.com/api/favorites",
-		};
-		axios.request(options)
-		.then((res) => {
-            favorites = res.data.favorites
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-    })
+            method: "GET",
+            url: "https://watchly-app-backend.herokuapp.com/api/favorites",
+        };
+        axios
+            .request(options)
+            .then((res) => {
+                favorites = res.data.favorites;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    });
     const updateMovieToWatched = (movie) => {
-        console.log(movie)
+        console.log(movie);
         const options = {
-			method: "PUT",
+            method: "PUT",
             url: `https://watchly-app-backend.herokuapp.com/api/updateList/${movie._id}`,
             data: {
-                watched: !movie.watched
-            }
-		};
-		axios.request(options)
-		.then((res) => {})
-		.catch((err) => {
-			console.log(err);
-		});
-
+                watched: !movie.watched,
+            },
+        };
+        axios
+            .request(options)
+            .then((res) => {})
+            .catch((err) => {
+                console.log(err);
+            });
     };
     const updateFavMovieToWatched = (movie) => {
-        console.log(movie)
+        console.log(movie);
         const options = {
-			method: "PUT",
+            method: "PUT",
             url: `https://watchly-app-backend.herokuapp.com/api/updateFavList/${movie._id}`,
             data: {
-                watched: !movie.watched
-            }
-		};
-		axios.request(options)
-		.then((res) => {})
-		.catch((err) => {
-			console.log(err);
-		});
-
+                watched: !movie.watched,
+            },
+        };
+        axios
+            .request(options)
+            .then((res) => {})
+            .catch((err) => {
+                console.log(err);
+            });
     };
     const deleteWatchListMovie = (movie, index) => {
-        watchList.splice(index, 1)
-        watchList = watchList
+        watchList.splice(index, 1);
+        watchList = watchList;
         const options = {
-			method: "DELETE",
+            method: "DELETE",
             url: `https://watchly-app-backend.herokuapp.com/api/deleteList/${movie._id}`,
             data: {
-                watched: !movie.watched
-            }
-		};
-		axios.request(options)
-		.then((res) => {})
-		.catch((err) => {
-			console.log(err);
-		});
-    }
+                watched: !movie.watched,
+            },
+        };
+        axios
+            .request(options)
+            .then((res) => {})
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     const deleteFavoriteMovie = (movie, index) => {
-        favorites.splice(index, 1)
-        favorites = favorites
+        favorites.splice(index, 1);
+        favorites = favorites;
         const options = {
-			method: "DELETE",
+            method: "DELETE",
             url: `https://watchly-app-backend.herokuapp.com/api/deleteFavList/${movie._id}`,
             data: {
-                watched: !movie.watched
-            }
-		};
-		axios.request(options)
-		.then((res) => {})
-		.catch((err) => {
-			console.log(err);
-		});
-    }
+                watched: !movie.watched,
+            },
+        };
+        axios
+            .request(options)
+            .then((res) => {})
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     function changeCheckbox(index) {
-        const checkboxes = document.querySelectorAll(".check")
-        let box = checkboxes.item(index)
-        if (box.classList.contains("unchecked-icon")){
-            box.classList.remove("unchecked-icon")
-            box.classList.add("checked-icon")
+        const checkboxes = document.querySelectorAll(".check");
+        let box = checkboxes.item(index);
+        if (box.classList.contains("unchecked-icon")) {
+            box.classList.remove("unchecked-icon");
+            box.classList.add("checked-icon");
         } else {
-            box.classList.remove("checked-icon")
-            box.classList.add("unchecked-icon")
+            box.classList.remove("checked-icon");
+            box.classList.add("unchecked-icon");
         }
-        
     }
     function changeFavCheckbox(index) {
-        const checkboxes = document.querySelectorAll(".fav-check")
-        let box = checkboxes.item(index)
-        if (box.classList.contains("unchecked-icon")){
-            box.classList.remove("unchecked-icon")
-            box.classList.add("checked-icon")
+        const checkboxes = document.querySelectorAll(".fav-check");
+        let box = checkboxes.item(index);
+        if (box.classList.contains("unchecked-icon")) {
+            box.classList.remove("unchecked-icon");
+            box.classList.add("checked-icon");
         } else {
-            box.classList.remove("checked-icon")
-            box.classList.add("unchecked-icon")
+            box.classList.remove("checked-icon");
+            box.classList.add("unchecked-icon");
         }
-        
     }
 </script>
 
-<section class="card-wrapper">
-    <div class="list-container">
-        <h1 class="card-title">my watchlist</h1>
-        <!-- <button on:click={derp2}>{derp}</button> -->
-        {#each watchList as movie, i}
-        <table class="list-movie-item">
-                <tbody>
-                    <tr>    
-                        <td>
-                            <img src="{movie.moviePoster}" height="100" alt={movie.title}/>
-                        </td>
-                        <td>
-                            <h4>{movie.title}</h4>
-                        </td>
-                        <td>
-                            <div on:click={updateMovieToWatched(movie)}>
-                                {#if movie.watched}
-                                    <div class="checked-icon check" on:click={() => changeCheckbox(i)}>
-                                            <FaCheckSquare/>
-                                    </div>
-                                {:else}
-                                    <div class="unchecked-icon check" on:click={() => changeCheckbox(i)}>
-                                        <FaCheckSquare/>
-                                    </div>
-                                {/if}
-                            </div>
-                        </td>
-                        <td>
-                            <div on:click={deleteWatchListMovie(movie, i)}>
-                                <div class="trash-icon">
-                                    <FaTrashAlt/>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        {/each}
-    </div>
-    <div class="fav-container">
-        <h1 class="card-title">my favorites</h1>
-        {#each favorites as movie, i}
-            <table class="list-movie-item">
-                <tbody>
-                    <tr>
-                        <td>
-                            <img src="{movie.moviePoster}" height="100" alt={movie.title}/>
-                        </td>
-                        <td>
-                            <h4>{movie.title}</h4>
-                        </td>
-                        <td>
-                            <div on:click={updateFavMovieToWatched(movie)}>
-                                {#if movie.watched}
-                                    <div class="checked-icon fav-check" on:click={() => changeFavCheckbox(i)}> 
-                                        <FaCheckSquare/>
-                                    </div>
-                                {:else}
-                                    <div class="unchecked-icon fav-check" on:click={() => changeFavCheckbox(i)}>
-                                        <FaCheckSquare/>
-                                    </div>
-                                {/if}
-                            </div>
-                        </td>
-                        <td>
-                            <div on:click={deleteFavoriteMovie(movie, i)}>
-                                <div class="trash-icon">
-                                    <FaTrashAlt/>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        {/each}
-    </div>
-</section>
-
-
 <style>
-	.card-wrapper {
+    .card-wrapper {
         display: grid;
         column-gap: 20px;
         margin: 1rem 10rem;
         padding: 0 1rem;
         min-height: 100%;
-	}
+    }
     .card-title {
         text-align: left;
         color: #2ec4b6;
@@ -219,12 +142,12 @@
     .list-container {
         padding: 15px;
         border-radius: 5px;
-		box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.9);
+        box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.9);
         background-color: #262626;
         text-align: left;
         color: #fdfffc;
         grid-column: 1 / 4;
-		grid-row: 1 / 7;
+        grid-row: 1 / 7;
     }
     h1 {
         margin-top: 0;
@@ -232,7 +155,7 @@
     .fav-container {
         padding: 15px;
         border-radius: 5px;
-		box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.9);
+        box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.9);
         background-color: #262626;
         grid-column: 5 / 8;
     }
@@ -263,7 +186,9 @@
         height: 100px;
         border-radius: 5px 0 0 5px;
     }
-    .unchecked-icon, .checked-icon, .trash-icon {
+    .unchecked-icon,
+    .checked-icon,
+    .trash-icon {
         width: 30px;
         height: 30px;
     }
@@ -275,7 +200,7 @@
         cursor: pointer;
     }
     .checked-icon {
-       color: #41db2a; 
+        color: #41db2a;
     }
     .checked-icon:hover {
         color: #ffffff;
@@ -290,11 +215,103 @@
             margin: 1rem 0;
             row-gap: 20px;
         }
-		.list-container {
+        .list-container {
             grid-column: 1 / 8;
         }
         .fav-container {
-            grid-column: 1 / 8; 
+            grid-column: 1 / 8;
         }
     }
 </style>
+
+<section class="card-wrapper">
+    <div class="list-container">
+        <h1 class="card-title">my watchlist</h1>
+        <!-- <button on:click={derp2}>{derp}</button> -->
+        {#each watchList as movie, i}
+            <table class="list-movie-item">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img
+                                src={movie.moviePoster}
+                                height="100"
+                                alt={movie.title} />
+                        </td>
+                        <td>
+                            <h4>{movie.title}</h4>
+                        </td>
+                        <td>
+                            <div on:click={updateMovieToWatched(movie)}>
+                                {#if movie.watched}
+                                    <div
+                                        class="checked-icon check"
+                                        on:click={() => changeCheckbox(i)}>
+                                        <FaCheckSquare />
+                                    </div>
+                                {:else}
+                                    <div
+                                        class="unchecked-icon check"
+                                        on:click={() => changeCheckbox(i)}>
+                                        <FaCheckSquare />
+                                    </div>
+                                {/if}
+                            </div>
+                        </td>
+                        <td>
+                            <div on:click={deleteWatchListMovie(movie, i)}>
+                                <div class="trash-icon">
+                                    <FaTrashAlt />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {/each}
+    </div>
+    <div class="fav-container">
+        <h1 class="card-title">my favorites</h1>
+        {#each favorites as movie, i}
+            <table class="list-movie-item">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img
+                                src={movie.moviePoster}
+                                height="100"
+                                alt={movie.title} />
+                        </td>
+                        <td>
+                            <h4>{movie.title}</h4>
+                        </td>
+                        <td>
+                            <div on:click={updateFavMovieToWatched(movie)}>
+                                {#if movie.watched}
+                                    <div
+                                        class="checked-icon fav-check"
+                                        on:click={() => changeFavCheckbox(i)}>
+                                        <FaCheckSquare />
+                                    </div>
+                                {:else}
+                                    <div
+                                        class="unchecked-icon fav-check"
+                                        on:click={() => changeFavCheckbox(i)}>
+                                        <FaCheckSquare />
+                                    </div>
+                                {/if}
+                            </div>
+                        </td>
+                        <td>
+                            <div on:click={deleteFavoriteMovie(movie, i)}>
+                                <div class="trash-icon">
+                                    <FaTrashAlt />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        {/each}
+    </div>
+</section>
